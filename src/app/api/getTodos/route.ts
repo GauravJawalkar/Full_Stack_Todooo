@@ -7,7 +7,9 @@ connectDB();
 export async function GET(request: NextRequest) {
     try {
 
-        const allTodos = await Todo.find({});
+        const allTodos = await Todo.find({
+            completed: false
+        });
 
         if (!allTodos) {
             return NextResponse.json({ data: "No Todos Found" }, { status: 400 })
