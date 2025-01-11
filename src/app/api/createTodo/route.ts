@@ -1,11 +1,8 @@
 import connectDB from "@/db/dbConfig";
 import { Todo } from "@/models/todo";
-import { error } from "console";
 import { NextRequest, NextResponse } from "next/server";
 
-
 connectDB();
-
 
 export async function POST(request: NextRequest) {
     try {
@@ -16,7 +13,6 @@ export async function POST(request: NextRequest) {
         const description = formData.get('description') as string;
         const completed = formData.get('completed') as boolean | null;
         const deadline = formData.get('deadline') as Date | null;
-
 
         if (!title || !deadline) {
             return NextResponse.json({ data: "Title and deadline are required" }, { status: 401 })
