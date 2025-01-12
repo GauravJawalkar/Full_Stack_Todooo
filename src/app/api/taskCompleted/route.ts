@@ -9,11 +9,7 @@ export async function POST(request: NextRequest) {
 
         const reqBody = await request.json();
 
-        console.log("Request Body : ", reqBody);
-
         const { _id } = reqBody;
-
-        console.log("This is the id ", _id)
 
         if (!_id) {
             throw NextResponse.json({ error: "No Context found to update the todo task as complete.Didnt got any _id" }, { status: 400 })

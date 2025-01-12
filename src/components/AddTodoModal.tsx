@@ -1,8 +1,7 @@
 "use client"
 
 import axios from "axios";
-import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 
 export default function AddTodosModal({ isVisible, onClose }: any) {
@@ -11,7 +10,8 @@ export default function AddTodosModal({ isVisible, onClose }: any) {
     const [description, setDescription] = useState("");
     const [deadline, setDeadline] = useState("");
     const [completed, setCompleted] = useState("false");
-    const router = useRouter();
+    const [disabledBtn, setDisabledBtn] = useState(true)
+
 
     const handelSubmit = async () => {
         // send form data here
@@ -21,7 +21,6 @@ export default function AddTodosModal({ isVisible, onClose }: any) {
             formData.append('description', description);
             formData.append('completed', completed);
             formData.append('deadline', deadline)
-
             const response = await axios.post('/api/createTodo', formData);
             setTitle("");
             setDescription("");
@@ -35,8 +34,18 @@ export default function AddTodosModal({ isVisible, onClose }: any) {
         } catch (error) {
             console.log("Error Sending todo : ", error);
         }
-
     }
+
+
+    useEffect(() => {
+        if (title.length < 3) {
+            setDisabledBtn(true)
+        } else {
+            setDisabledBtn(false);
+        }
+    }, [title])
+
+
 
     if (!isVisible) return null;
 
@@ -52,7 +61,7 @@ export default function AddTodosModal({ isVisible, onClose }: any) {
                         </div>
                         <form onSubmit={handelSubmit} className="flex items-start gap-y-5 flex-col">
                             <div className="text-center w-full">
-                                <h1 className="text-3xl font-bold my-3">Add Your Tasks!</h1>
+                                <h1 className="text-3xl font-bold my-3"> Add Your Tasks!</h1>
                                 <p className="text-base text-gray-400">List your tasks and get your day started planning it before hand.Max out your productivity</p>
                             </div>
                             <div className="w-full">
@@ -67,7 +76,7 @@ export default function AddTodosModal({ isVisible, onClose }: any) {
                                 <label className="text-gray-300">Deadline :</label>
                                 <input type="datetime-local" value={deadline} onChange={(e) => setDeadline(e.target.value)} className="w-full px-5 my-2 rounded-sm py-2 text-black" name="" placeholder="Set Deadline" id="" />
                             </div>
-                            <button type="submit" className="bg-[#1a1a1a] w-full px-6 py-3 rounded text-white ring-1 ring-white uppercase hover:bg-black transition-all ease-linear duration-200">
+                            <button type="submit" disabled={disabledBtn} className={`bg-[#1a1a1a] w-full px-6 py-3 rounded text-white ring-1 ring-white uppercase hover:bg-black transition-all ease-linear duration-200 ${disabledBtn ? "cursor-not-allowed" : "cursor-pointer"}`}>
                                 Create Todo
                             </button>
                         </form>
