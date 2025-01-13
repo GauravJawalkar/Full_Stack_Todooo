@@ -54,7 +54,7 @@ export default function AddTodosModal({ isVisible, onClose, reRender }: any) {
         <>
             <section className="inset-0 fixed backdrop-blur-md bg-opacity-5 opacity-1 h-screen flex items-center justify-center z-10" >
                 <div className="flex items-center justify-center">
-                    <div className="w-[500px] border px-10 py-10 rounded-xl ">
+                    <div className="w-[500px] max-md:w-fit max-sm:m-4 max-sm:p-5 border px-10 py-10 rounded-xl">
                         <div className="flex items-center justify-end">
                             <button onClick={() => onClose()} className="bg-black rounded-md p-2 group">
                                 <svg xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" className="icon icon-tabler icons-tabler-outline icon-tabler-x group-hover:rotate-90 transition-transform ease-linear duration-200"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M18 6l-12 12" /><path d="M6 6l12 12" /></svg>

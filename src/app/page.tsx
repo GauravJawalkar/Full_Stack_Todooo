@@ -3,6 +3,7 @@
 import AddTodosModal from "@/components/AddTodoModal";
 import UpdateTodosModal from "@/components/UpdateTodoModal";
 import axios from "axios";
+import Image from "next/image";
 import { useEffect, useState } from "react"
 import toast from "react-hot-toast";
 
@@ -54,10 +55,10 @@ function Home() {
   }, [])
 
   return (
-    <section >
-      <div className="text-center text-4xl my-10 font-semibold">TASKLii-📝</div>
+    <section className="mx-auto container">
+      <div className="text-center text-4xl my-10 font-semibold ">TASKLii-📝</div>
       <div>
-        <div className="flex items-center justify-center gap-5 my-5">
+        <div className="flex items-center justify-center gap-5 my-5 flex-wrap px-[6px]">
           <button onClick={() => {
             setModal(true)
           }}
@@ -72,11 +73,11 @@ function Home() {
         <UpdateTodosModal isUpdateVisible={updateModal} onUpdateClose={() => { setUpdateModal(false) }} title={title} id={id} reRender={() => response()} />
       </div>
       {/* TASKS LIST */}
-      <div className={`grid grid-cols-4 ${data.length === 0 ? "grid-cols-none" : ""} max-sm:grid-cols-1 gap-10 p-10`}>
+      <div className={`grid lg:grid-cols-3 sm:grid-cols-2  ${data.length === 0 ? "grid-cols-none" : ""} max-sm:grid-cols-1 max-md:grid-cols-2 gap-10 p-10`}>
         {
           data.length > 0 ? data.map(({ _id, title, deadline }) => {
             return (
-              <div className='w-full bg-[#1a1a1a] border p-4 rounded-xl' key={_id}>
+              <div className='w-full bg-[#1a1a1a] border border-gray-700 p-4 rounded-xl' key={_id}>
                 {/* color div*/}
                 <div className='h-1 bg-red-500 mb-4'>
                 </div>
@@ -120,8 +121,9 @@ function Home() {
               </div>
             )
           }) :
-            <div className={`animate-pulse transition-all ease-linear duration-200 ${modal === true ? "hidden" : "wait a minute"} text-center`}>
-              NO TASKS REMAINING! GREAT
+            <div className={` ${modal === true ? "hidden" : "flex items-center justify-center flex-col"} text-center`}>
+              <span className="animate-pulse transition-all ease-linear duration-200"> NO TASKS REMAINING! GREAT</span>
+              <Image src={'/noTaskRemaining.svg'} className="w-fit h-72" width={200} height={200} alt="no task image" />
             </div>
         }
       </div>
