@@ -12,8 +12,6 @@ export default function AddTodosModal({ isVisible, onClose, reRender }: any) {
     const [deadline, setDeadline] = useState("");
     const [disabledBtn, setDisabledBtn] = useState(true)
 
-    console.log("API_URI", process.env.API_URI);
-
     const handelSubmit = async (e: any) => {
         e.preventDefault();
         // send form data here
