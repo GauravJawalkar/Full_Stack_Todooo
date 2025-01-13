@@ -6,6 +6,9 @@ import axios from "axios";
 import { useEffect, useState } from "react"
 import toast from "react-hot-toast";
 
+
+export const dynamic = 'auto';
+
 function Home() {
 
   const [data, setData] = useState([]);
@@ -59,14 +62,14 @@ function Home() {
             setModal(true)
           }}
             className="bg-[#1a1a1a] px-4 py-2 rounded ring-1 ring-gray-700 hover:bg-black hover:ring-gray-500 transition-all ease-linear duration-200">Add A New Task</button>
-          <button onClick={() => { modal ? setModal(false) : ""; response(); }} className="bg-[#1a1a1a] px-4 py-2 rounded ring-1 ring-gray-700 hover:bg-black hover:ring-gray-500 transition-all ease-linear duration-200">Ongoing Tasks</button>
+          <button onClick={() => { modal ? setModal(false) : ""; response() }} className="bg-[#1a1a1a] px-4 py-2 rounded ring-1 ring-gray-700 hover:bg-black hover:ring-gray-500 transition-all ease-linear duration-200">Ongoing Tasks</button>
           <button onClick={() => {
             completedTasks();
             setModal(false)
           }} className="bg-[#1a1a1a] px-4 py-2 rounded ring-1 ring-gray-700 hover:bg-black hover:ring-gray-500 transition-all ease-linear duration-200">Completed Tasks</button>
         </div>
-        <AddTodosModal isVisible={modal} onClose={() => { setModal(false) }} />
-        <UpdateTodosModal isUpdateVisible={updateModal} onUpdateClose={() => { setUpdateModal(false) }} title={title} id={id} />
+        <AddTodosModal isVisible={modal} onClose={() => { setModal(false) }} reRender={() => response()} />
+        <UpdateTodosModal isUpdateVisible={updateModal} onUpdateClose={() => { setUpdateModal(false) }} title={title} id={id} reRender={() => response()} />
       </div>
       {/* TASKS LIST */}
       <div className={`grid grid-cols-4 ${data.length === 0 ? "grid-cols-none" : ""} max-sm:grid-cols-1 gap-10 p-10`}>
@@ -89,14 +92,16 @@ function Home() {
                 </div>
                 <div className="my-3 ">
                   {/* Complete Task Button */}
-                  <button onClick={() => {
+                  <button onClick={(e) => {
+                    e.preventDefault();
                     handelComplete(_id);
                   }}
                     className='bg-neutral-900 hover:text-green-500 hover:ring-green-500 transition-all ease-linear font-semibold duration-200 ring-1 ring-gray-400 px-4 py-2 rounded mr-5'>
                     <svg xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" className="icon icon-tabler icons-tabler-outline icon-tabler-rosette-discount-check"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M5 7.2a2.2 2.2 0 0 1 2.2 -2.2h1a2.2 2.2 0 0 0 1.55 -.64l.7 -.7a2.2 2.2 0 0 1 3.12 0l.7 .7c.412 .41 .97 .64 1.55 .64h1a2.2 2.2 0 0 1 2.2 2.2v1c0 .58 .23 1.138 .64 1.55l.7 .7a2.2 2.2 0 0 1 0 3.12l-.7 .7a2.2 2.2 0 0 0 -.64 1.55v1a2.2 2.2 0 0 1 -2.2 2.2h-1a2.2 2.2 0 0 0 -1.55 .64l-.7 .7a2.2 2.2 0 0 1 -3.12 0l-.7 -.7a2.2 2.2 0 0 0 -1.55 -.64h-1a2.2 2.2 0 0 1 -2.2 -2.2v-1a2.2 2.2 0 0 0 -.64 -1.55l-.7 -.7a2.2 2.2 0 0 1 0 -3.12l.7 -.7a2.2 2.2 0 0 0 .64 -1.55v-1" /><path d="M9 12l2 2l4 -4" /></svg>
                   </button>
                   {/* Update Task Button */}
-                  <button onClick={() => {
+                  <button onClick={(e) => {
+                    e.preventDefault();
                     setTitle(title);
                     setId(_id);
                     setUpdateModal(true)
@@ -105,9 +110,9 @@ function Home() {
                   </button>
 
                   {/* Delete Task Button */}
-                  <button onClick={() => {
+                  <button onClick={(e) => {
+                    e.preventDefault();
                     deleteMe(_id);
-                    response();
                   }} className='bg-neutral-900 hover:text-red-500 hover:ring-red-500 hover:font-semibold transition-all ease-linear duration-200 ring-1 ring-gray-400 px-4 py-2 rounded' >
                     <svg xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" className="icon icon-tabler icons-tabler-outline icon-tabler-trash"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M4 7l16 0" /><path d="M10 11l0 6" /><path d="M14 11l0 6" /><path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" /><path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" /></svg>
                   </button>

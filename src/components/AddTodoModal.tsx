@@ -4,38 +4,39 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 
-export default function AddTodosModal({ isVisible, onClose }: any) {
+
+export default function AddTodosModal({ isVisible, onClose, reRender }: any) {
 
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
     const [deadline, setDeadline] = useState("");
-    const [completed, setCompleted] = useState("false");
     const [disabledBtn, setDisabledBtn] = useState(true)
 
 
-    const handelSubmit = async () => {
+    const handelSubmit = async (e: any) => {
+        e.preventDefault();
         // send form data here
         try {
+            reRender();
             const formData = new FormData();
             formData.append('title', title);
             formData.append('description', description);
-            formData.append('completed', completed);
             formData.append('deadline', deadline)
             const response = await axios.post('/api/createTodo', formData);
             setTitle("");
             setDescription("");
             setDeadline("");
-            setCompleted("");
             onClose();
+            reRender();
             if (response) {
                 console.log(response.data)
                 toast.success('Todo Created')
             }
         } catch (error) {
             console.log("Error Sending todo : ", error);
+            toast.error("Error Sending the task try reloading the page");
         }
     }
-
 
     useEffect(() => {
         if (title.length < 3) {
