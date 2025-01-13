@@ -12,6 +12,7 @@ export default function AddTodosModal({ isVisible, onClose, reRender }: any) {
     const [deadline, setDeadline] = useState("");
     const [disabledBtn, setDisabledBtn] = useState(true)
 
+    console.log("API_URI", process.env.API_URI);
 
     const handelSubmit = async (e: any) => {
         e.preventDefault();
@@ -22,7 +23,7 @@ export default function AddTodosModal({ isVisible, onClose, reRender }: any) {
             formData.append('title', title);
             formData.append('description', description);
             formData.append('deadline', deadline)
-            const response = await axios.post('/api/createTodo', formData);
+            const response = await axios.post(`/api/createTodo`, formData);
             setTitle("");
             setDescription("");
             setDeadline("");

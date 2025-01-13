@@ -10,7 +10,7 @@ export default function UpdateTodosModal({ isUpdateVisible, onUpdateClose, title
     const [idd, setIdd] = useState("")
 
     const handelUpdate = async (title: string, _id: string) => {
-        const response = await axios.put('/api/updateTodo', { title, _id })
+        const response = await axios.put(`/api/updateTodo`, { title, _id })
         toast.success("Task Updated!");
         reRender();
         onUpdateClose();

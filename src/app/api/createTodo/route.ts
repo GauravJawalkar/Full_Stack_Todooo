@@ -6,7 +6,6 @@ connectDB();
 
 export async function POST(request: NextRequest) {
 
-
     const formData = await request.formData();
     const title = formData.get('title') as string;
     const description = formData.get('description') as string;
