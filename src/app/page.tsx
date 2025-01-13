@@ -63,7 +63,7 @@ function Home() {
             setModal(true)
           }}
             className="bg-[#1a1a1a] px-4 py-2 rounded ring-1 ring-gray-700 hover:bg-black hover:ring-gray-500 transition-all ease-linear duration-200">Add A New Task</button>
-          <button onClick={() => { modal ? setModal(false) : ""; response() }} className="bg-[#1a1a1a] px-4 py-2 rounded ring-1 ring-gray-700 hover:bg-black hover:ring-gray-500 transition-all ease-linear duration-200">Ongoing Tasks</button>
+          <button onClick={() => { response() }} className="bg-[#1a1a1a] px-4 py-2 rounded ring-1 ring-gray-700 hover:bg-black hover:ring-gray-500 transition-all ease-linear duration-200">Ongoing Tasks</button>
           <button onClick={() => {
             completedTasks();
             setModal(false)
@@ -127,7 +127,7 @@ function Home() {
             </div>
         }
       </div>
-    </section>
+    </section >
   )
 }
 
