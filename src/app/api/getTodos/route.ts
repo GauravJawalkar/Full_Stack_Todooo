@@ -1,10 +1,10 @@
 import connectDB from "@/db/dbConfig";
 import { Todo } from "@/models/todo";
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 
 connectDB();
 
-export async function GET(request: NextRequest) {
+export async function GET() {
     try {
 
         const allTodos = await Todo.find({

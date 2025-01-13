@@ -73,7 +73,7 @@ function Home() {
         <UpdateTodosModal isUpdateVisible={updateModal} onUpdateClose={() => { setUpdateModal(false) }} title={title} id={id} reRender={() => response()} />
       </div>
       {/* TASKS LIST */}
-      <div className={`grid lg:grid-cols-3 sm:grid-cols-2  ${data.length === 0 ? "grid-cols-none" : ""} max-sm:grid-cols-1 max-md:grid-cols-2 gap-10 p-10`}>
+      <div className={`grid lg:grid-cols-3 xl:grid-cols-4 sm:grid-cols-2  ${data.length === 0 ? "xl:grid-cols-none md:grid-cols-none lg:grid-cols-none grid-cols-none" : "grid-cols-1"} max-sm:grid-cols-1 max-md:grid-cols-2 grid-cols-1 gap-10 p-10`}>
         {
           data.length > 0 ? data.map(({ _id, title, deadline }) => {
             return (
