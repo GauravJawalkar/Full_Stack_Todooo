@@ -82,7 +82,7 @@ function Home() {
                 <div className='h-1 bg-red-500 mb-4'>
                 </div>
                 <div className="mb-4">
-                  <Image src={image || '/noTaskRemaining.svg'} width={"200"} height={"200"} className="w-full h-48 object-contain" alt="ask Image" />
+                  <Image loading="lazy" src={image || '/noTaskRemaining.svg'} width={"200"} height={"200"} className="w-full h-48 object-contain" alt="ask Image" />
                 </div>
                 <div className="mb-4">
                   <h1 className='text-xl font-semibold line-clamp-3'>{title}
