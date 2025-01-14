@@ -10,6 +10,7 @@ export default function AddTodosModal({ isVisible, onClose, reRender }: any) {
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
     const [deadline, setDeadline] = useState("");
+    const [file, setFile] = useState("");
     const [disabledBtn, setDisabledBtn] = useState(true)
 
     const handelSubmit = async (e: any) => {
@@ -19,12 +20,14 @@ export default function AddTodosModal({ isVisible, onClose, reRender }: any) {
             reRender();
             const formData = new FormData();
             formData.append('title', title);
+            formData.append('file', file);
             formData.append('description', description);
-            formData.append('deadline', deadline)
+            formData.append('deadline', deadline);
             const response = await axios.post(`/api/createTodo`, formData);
             setTitle("");
             setDescription("");
             setDeadline("");
+            setFile("");
             onClose();
             reRender();
             if (response) {
@@ -71,6 +74,10 @@ export default function AddTodosModal({ isVisible, onClose, reRender }: any) {
                             <div className="w-full">
                                 <label className="text-gray-300">Description :</label>
                                 <input type="text" value={description} onChange={(e) => setDescription(e.target.value)} className="w-full px-5 py-2 mt-2 rounded-sm text-black" name="" placeholder="Todo-Description" id="" />
+                            </div>
+                            <div className="w-full">
+                                <label className="text-gray-300">Image :</label>
+                                <input draggable type="file" onChange={(e: any) => setFile(e.target.files[0])} className="w-full px-5 py-2 mt-2 bg-white rounded-sm text-black" placeholder="Upload-Image" id="" />
                             </div>
                             <div className="w-full">
                                 <label className="text-gray-300">Deadline :</label>

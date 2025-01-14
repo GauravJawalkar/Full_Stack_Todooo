@@ -63,7 +63,7 @@ function Home() {
             setModal(true)
           }}
             className="bg-[#1a1a1a] px-4 py-2 rounded ring-1 ring-gray-700 hover:bg-black hover:ring-gray-500 transition-all ease-linear duration-200">Add A New Task</button>
-          <button onClick={() => {response()}} className="bg-[#1a1a1a] px-4 py-2 rounded ring-1 ring-gray-700 hover:bg-black hover:ring-gray-500 transition-all ease-linear duration-200">Ongoing Tasks</button>
+          <button onClick={() => { response() }} className="bg-[#1a1a1a] px-4 py-2 rounded ring-1 ring-gray-700 hover:bg-black hover:ring-gray-500 transition-all ease-linear duration-200">Ongoing Tasks</button>
           <button onClick={() => {
             completedTasks();
             setModal(false)
@@ -75,11 +75,14 @@ function Home() {
       {/* TASKS LIST */}
       <div className={`grid lg:grid-cols-3 xl:grid-cols-4 sm:grid-cols-2  ${data.length === 0 ? "xl:grid-cols-none md:grid-cols-none lg:grid-cols-none grid-cols-none" : "grid-cols-1"} max-sm:grid-cols-1 max-md:grid-cols-2 grid-cols-1 gap-10 p-10`}>
         {
-          data.length > 0 ? data.map(({ _id, title, deadline }) => {
+          data.length > 0 ? data.map(({ _id, title, deadline, image }) => {
             return (
               <div className='w-full bg-[#1a1a1a] border border-gray-700 p-4 rounded-xl' key={_id}>
                 {/* color div*/}
                 <div className='h-1 bg-red-500 mb-4'>
+                </div>
+                <div className="mb-4">
+                  <Image src={image || '/noTaskRemaining.svg'} width={"200"} height={"200"} className="w-full h-48 object-contain" alt="ask Image" />
                 </div>
                 <div className="mb-4">
                   <h1 className='text-xl font-semibold line-clamp-3'>{title}
