@@ -93,7 +93,7 @@ function Home() {
                   }} className='hover:font-semibold absolute right-3 top-1 transition-all ease-linear duration-200 text-black opacity-0 group-hover:opacity-100'>
                     <svg xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" fill="white" stroke="black" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" className="icon icon-tabler icons-tabler-outline icon-tabler-photo-plus w-8 h-8"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M15 8h.01" /><path d="M12.5 21h-6.5a3 3 0 0 1 -3 -3v-12a3 3 0 0 1 3 -3h12a3 3 0 0 1 3 3v6.5" /><path d="M3 16l5 -5c.928 -.893 2.072 -.893 3 0l4 4" /><path d="M14 14l1 -1c.67 -.644 1.45 -.824 2.182 -.54" /><path d="M16 19h6" /><path d="M19 16v6" /></svg>
                   </button>
-                  <Image loading="lazy" src={image || '/noTaskRemaining.svg'} width={"200"} height={"200"} className="w-full h-48 object-contain group" alt="ask Image" />
+                  <Image loading="lazy" src={image || '/noTaskRemaining.svg'} width={"200"} height={"200"} className="w-full h-48 bg-white rounded object-contain group" alt="ask Image" />
                 </div>
                 <div className="mb-4">
                   <h1 className='text-xl font-semibold line-clamp-3'>{title}
