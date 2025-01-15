@@ -1,6 +1,7 @@
 "use client"
 
 import AddTodosModal from "@/components/AddTodoModal";
+import UpdateImageModal from "@/components/UpdateImageModal";
 import UpdateTodosModal from "@/components/UpdateTodoModal";
 import axios from "axios";
 import Image from "next/image";
@@ -15,6 +16,7 @@ function Home() {
   const [data, setData] = useState([]);
   const [modal, setModal] = useState(false)
   const [updateModal, setUpdateModal] = useState(false)
+  const [updateImgModal, setUpdateImgModal] = useState(false)
   const [title, setTitle] = useState('');
   const [id, setId] = useState('');
 
@@ -71,6 +73,7 @@ function Home() {
         </div>
         <AddTodosModal isVisible={modal} onClose={() => { setModal(false) }} reRender={() => response()} />
         <UpdateTodosModal isUpdateVisible={updateModal} onUpdateClose={() => { setUpdateModal(false) }} title={title} id={id} reRender={() => response()} />
+        <UpdateImageModal isUpdateImgVisible={updateImgModal} onUpdateImgClose={() => { setUpdateImgModal(false) }} id={id} reRender={() => response()} />
       </div>
       {/* TASKS LIST */}
       <div className={`grid lg:grid-cols-3 xl:grid-cols-4 sm:grid-cols-2  ${data.length === 0 ? "xl:grid-cols-none md:grid-cols-none lg:grid-cols-none grid-cols-none" : "grid-cols-1"} max-sm:grid-cols-1 max-md:grid-cols-2 grid-cols-1 gap-10 p-10`}>
@@ -110,6 +113,15 @@ function Home() {
                     setId(_id);
                     setUpdateModal(true)
                   }} className='bg-neutral-900 hover:text-blue-500 hover:ring-blue-500 hover:font-semibold transition-all ease-linear duration-200 ring-1 ring-gray-400 px-4 py-2 rounded mr-5'>
+                    <svg xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" className="icon icon-tabler icons-tabler-outline icon-tabler-edit-off"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1" /><path d="M10.507 10.498l-1.507 1.502v3h3l1.493 -1.498m2 -2.01l4.89 -4.907a2.1 2.1 0 0 0 -2.97 -2.97l-4.913 4.896" /><path d="M16 5l3 3" /><path d="M3 3l18 18" /></svg>
+                  </button>
+
+                  {/* Update image Button */}
+                  <button onClick={(e) => {
+                    e.preventDefault();
+                    setId(_id);
+                    setUpdateImgModal(true)
+                  }} className='bg-neutral-900 hover:text-yellow-500 hover:ring-blue-500 hover:font-semibold transition-all ease-linear duration-200 ring-1 ring-gray-400 px-4 py-2 rounded mr-5'>
                     <svg xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" className="icon icon-tabler icons-tabler-outline icon-tabler-edit-off"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1" /><path d="M10.507 10.498l-1.507 1.502v3h3l1.493 -1.498m2 -2.01l4.89 -4.907a2.1 2.1 0 0 0 -2.97 -2.97l-4.913 4.896" /><path d="M16 5l3 3" /><path d="M3 3l18 18" /></svg>
                   </button>
 

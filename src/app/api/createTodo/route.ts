@@ -26,6 +26,8 @@ export async function POST(request: NextRequest) {
         console.log("Failed To upload image on Cloudinary")
     }
 
+    console.log("Image  uploaded on cloudinary", response)
+
     const todo = await Todo.create(
         {
             title: title,
