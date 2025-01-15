@@ -2,13 +2,16 @@
 import axios from 'axios';
 import React, { useState } from 'react'
 import toast from 'react-hot-toast';
+import Loader from './Loader';
 
 function UpdateImageModal({ isUpdateImgVisible, onUpdateImgClose, id, reRender }: any) {
 
     const [file, setFile] = useState("");
+    const [loading, setLoading] = useState(false);
     console.log(id)
     async function handelUpdateImage() {
         try {
+            setLoading(true);
             const formData = new FormData();
             formData.append('file', file)
             formData.append('id', id)
@@ -16,6 +19,7 @@ function UpdateImageModal({ isUpdateImgVisible, onUpdateImgClose, id, reRender }
             console.log("Response is : ", response.data.data);
             toast.success("Image Updated!");
             reRender();
+            setLoading(false)
             onUpdateImgClose();
         } catch (error) {
             console.log("Error :", error)
@@ -46,7 +50,7 @@ function UpdateImageModal({ isUpdateImgVisible, onUpdateImgClose, id, reRender }
                                     name="" placeholder="Todo-Title" id="" />
                             </div>
                             <button type="submit" className={`bg-[#1a1a1a] w-full px-6 py-3 rounded text-white ring-1 ring-white uppercase hover:bg-black transition-all ease-linear duration-200`}>
-                                Update Image
+                                {loading ? <Loader title='Uploading' /> : "Update Image"}
                             </button>
                         </form>
                     </div>

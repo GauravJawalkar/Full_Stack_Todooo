@@ -3,6 +3,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
+import Loader from "./Loader";
 
 
 export default function AddTodosModal({ isVisible, onClose, reRender }: any) {
@@ -12,12 +13,14 @@ export default function AddTodosModal({ isVisible, onClose, reRender }: any) {
     const [deadline, setDeadline] = useState("");
     const [file, setFile] = useState("");
     const [disabledBtn, setDisabledBtn] = useState(true);
+    const [loading, setLoading] = useState(false)
 
     const handelSubmit = async (e: any) => {
         e.preventDefault();
         // send form data here
         try {
             reRender();
+            setLoading(true);
             const formData = new FormData();
             formData.append('title', title);
             formData.append('file', file);
@@ -29,6 +32,7 @@ export default function AddTodosModal({ isVisible, onClose, reRender }: any) {
             setDeadline("");
             setFile("");
             onClose();
+            setLoading(false)
             reRender();
             if (response) {
                 console.log(response.data)
@@ -37,6 +41,7 @@ export default function AddTodosModal({ isVisible, onClose, reRender }: any) {
         } catch (error) {
             console.log("Error Sending todo : ", error);
             toast.error("Error Sending the task try reloading the page");
+            setLoading(false);
         }
     }
 
@@ -84,7 +89,7 @@ export default function AddTodosModal({ isVisible, onClose, reRender }: any) {
                                 <input type="datetime-local" value={deadline} onChange={(e: any) => { setDeadline(e.target.value) }} className="w-full px-5 my-2 rounded-sm py-2 text-black" name="" placeholder="Set Deadline" id="" />
                             </div>
                             <button type="submit" disabled={disabledBtn} className={`bg-[#1a1a1a] w-full px-6 py-3 rounded text-white ring-1 ring-white uppercase hover:bg-black transition-all ease-linear duration-200 ${disabledBtn ? "cursor-not-allowed" : "cursor-pointer"}`}>
-                                Create Todo
+                                {loading ? <Loader title="Processing" /> : "Create Todo"}
                             </button>
                         </form>
                     </div>

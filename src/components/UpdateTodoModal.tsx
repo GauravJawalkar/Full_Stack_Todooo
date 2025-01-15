@@ -3,16 +3,20 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
+import Loader from "./Loader";
 
 export default function UpdateTodosModal({ isUpdateVisible, onUpdateClose, title, id, reRender }: any) {
 
     const [updatedTitle, setUpdatedTitle] = useState("");
     const [idd, setIdd] = useState("")
+    const [loading, setLoading] = useState(false)
 
     const handelUpdate = async (title: string, _id: string) => {
+        setLoading(true);
         const response = await axios.put(`/api/updateTodo`, { title, _id })
         toast.success("Task Updated!");
         reRender();
+        setLoading(false)
         onUpdateClose();
         console.log("updated todo is ", response.data.data)
     }
@@ -47,7 +51,7 @@ export default function UpdateTodosModal({ isUpdateVisible, onUpdateClose, title
                                     name="" placeholder="Todo-Title" id="" />
                             </div>
                             <button type="submit" className={`bg-[#1a1a1a] w-full px-6 py-3 rounded text-white ring-1 ring-white uppercase hover:bg-black transition-all ease-linear duration-200`}>
-                                Save Updates
+                                {loading ? <Loader title="Saving" /> : "Save Updates"}
                             </button>
                         </form>
                     </div>
