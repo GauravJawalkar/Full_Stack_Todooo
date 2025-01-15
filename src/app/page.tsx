@@ -64,12 +64,12 @@ function Home() {
           <button onClick={() => {
             setModal(true)
           }}
-            className="bg-[#1a1a1a] px-4 py-2 rounded ring-1 ring-gray-700 hover:bg-black hover:ring-gray-500 transition-all ease-linear duration-200">Add A New Task</button>
-          <button onClick={() => { response() }} className="bg-[#1a1a1a] px-4 py-2 rounded ring-1 ring-gray-700 hover:bg-black hover:ring-gray-500 transition-all ease-linear duration-200">Ongoing Tasks</button>
+            className="bg-[#1a1a1a] px-4 py-2 text-white rounded ring-1 ring-gray-700 hover:bg-black hover:ring-gray-500 transition-all ease-linear duration-200">Add A New Task</button>
+          <button onClick={() => { response() }} className="bg-[#1a1a1a] px-4 py-2 rounded ring-1 ring-gray-700 hover:bg-black text-white hover:ring-gray-500 transition-all ease-linear duration-200">Ongoing Tasks</button>
           <button onClick={() => {
             completedTasks();
             setModal(false)
-          }} className="bg-[#1a1a1a] px-4 py-2 rounded ring-1 ring-gray-700 hover:bg-black hover:ring-gray-500 transition-all ease-linear duration-200">Completed Tasks</button>
+          }} className="bg-[#1a1a1a] px-4 py-2 rounded ring-1 text-white ring-gray-700 hover:bg-black hover:ring-gray-500 transition-all ease-linear duration-200">Completed Tasks</button>
         </div>
         <AddTodosModal isVisible={modal} onClose={() => { setModal(false) }} reRender={() => response()} />
         <UpdateTodosModal isUpdateVisible={updateModal} onUpdateClose={() => { setUpdateModal(false) }} title={title} id={id} reRender={() => response()} />
@@ -111,7 +111,7 @@ function Home() {
                     e.preventDefault();
                     handelComplete(_id);
                   }}
-                    className='bg-neutral-900 hover:text-green-500 hover:ring-green-500 transition-all ease-linear font-semibold duration-200 ring-1 ring-gray-400 px-4 py-2 rounded mr-5'>
+                    className='bg-neutral-900 hover:text-green-500 hover:ring-green-500 transition-all ease-linear font-semibold duration-200 text-white ring-1 ring-gray-400 px-4 py-2 rounded mr-5'>
                     <svg xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" className="icon icon-tabler icons-tabler-outline icon-tabler-rosette-discount-check"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M5 7.2a2.2 2.2 0 0 1 2.2 -2.2h1a2.2 2.2 0 0 0 1.55 -.64l.7 -.7a2.2 2.2 0 0 1 3.12 0l.7 .7c.412 .41 .97 .64 1.55 .64h1a2.2 2.2 0 0 1 2.2 2.2v1c0 .58 .23 1.138 .64 1.55l.7 .7a2.2 2.2 0 0 1 0 3.12l-.7 .7a2.2 2.2 0 0 0 -.64 1.55v1a2.2 2.2 0 0 1 -2.2 2.2h-1a2.2 2.2 0 0 0 -1.55 .64l-.7 .7a2.2 2.2 0 0 1 -3.12 0l-.7 -.7a2.2 2.2 0 0 0 -1.55 -.64h-1a2.2 2.2 0 0 1 -2.2 -2.2v-1a2.2 2.2 0 0 0 -.64 -1.55l-.7 -.7a2.2 2.2 0 0 1 0 -3.12l.7 -.7a2.2 2.2 0 0 0 .64 -1.55v-1" /><path d="M9 12l2 2l4 -4" /></svg>
                   </button>
                   {/* Update Task Button */}
@@ -120,7 +120,7 @@ function Home() {
                     setTitle(title);
                     setId(_id);
                     setUpdateModal(true)
-                  }} className='bg-neutral-900 hover:text-blue-500 hover:ring-blue-500 hover:font-semibold transition-all ease-linear duration-200 ring-1 ring-gray-400 px-4 py-2 rounded mr-5'>
+                  }} className='bg-neutral-900 hover:text-blue-500 hover:ring-blue-500 hover:font-semibold transition-all ease-linear text-white duration-200 ring-1 ring-gray-400 px-4 py-2 rounded mr-5'>
                     <svg xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" className="icon icon-tabler icons-tabler-outline icon-tabler-edit-off"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1" /><path d="M10.507 10.498l-1.507 1.502v3h3l1.493 -1.498m2 -2.01l4.89 -4.907a2.1 2.1 0 0 0 -2.97 -2.97l-4.913 4.896" /><path d="M16 5l3 3" /><path d="M3 3l18 18" /></svg>
                   </button>
 
@@ -128,7 +128,7 @@ function Home() {
                   <button onClick={(e) => {
                     e.preventDefault();
                     deleteMe(_id);
-                  }} className='bg-neutral-900 hover:text-red-500 hover:ring-red-500 hover:font-semibold transition-all ease-linear duration-200 ring-1 ring-gray-400 px-4 py-2 rounded' >
+                  }} className='bg-neutral-900 hover:text-red-500 hover:ring-red-500 hover:font-semibold transition-all ease-linear text-white duration-200 ring-1 ring-gray-400 px-4 py-2 rounded' >
                     <svg xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" className="icon icon-tabler icons-tabler-outline icon-tabler-trash"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M4 7l16 0" /><path d="M10 11l0 6" /><path d="M14 11l0 6" /><path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" /><path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" /></svg>
                   </button>
                 </div>
