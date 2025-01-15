@@ -1,7 +1,6 @@
 import connectDB from "@/db/dbConfig";
 import { Todo } from "@/models/todo";
 import { uploadOnCloudinary } from "@/utils/uploadOnCloudinary";
-import { error } from "console";
 import { NextRequest, NextResponse } from "next/server";
 
 connectDB();
