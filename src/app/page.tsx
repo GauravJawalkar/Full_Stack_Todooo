@@ -84,8 +84,16 @@ function Home() {
                 {/* color div*/}
                 <div className='h-1 bg-red-500 mb-4'>
                 </div>
-                <div className="mb-4">
-                  <Image loading="lazy" src={image || '/noTaskRemaining.svg'} width={"200"} height={"200"} className="w-full h-48 object-contain" alt="ask Image" />
+                <div className="mb-4 relative group">
+                  {/* Update image Button */}
+                  <button onClick={(e) => {
+                    e.preventDefault();
+                    setId(_id);
+                    setUpdateImgModal(true)
+                  }} className='hover:font-semibold absolute right-0 transition-all ease-linear duration-200 group-hover:animate-pulse'>
+                    <svg xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" className="icon icon-tabler icons-tabler-outline icon-tabler-photo-edit h-6 w-6"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M15 8h.01" /><path d="M11 20h-4a3 3 0 0 1 -3 -3v-10a3 3 0 0 1 3 -3h10a3 3 0 0 1 3 3v4" /><path d="M4 15l4 -4c.928 -.893 2.072 -.893 3 0l3 3" /><path d="M14 14l1 -1c.31 -.298 .644 -.497 .987 -.596" /><path d="M18.42 15.61a2.1 2.1 0 0 1 2.97 2.97l-3.39 3.42h-3v-3l3.42 -3.39z" /></svg>
+                  </button>
+                  <Image loading="lazy" src={image || '/noTaskRemaining.svg'} width={"200"} height={"200"} className="w-full h-48 object-contain group" alt="ask Image" />
                 </div>
                 <div className="mb-4">
                   <h1 className='text-xl font-semibold line-clamp-3'>{title}
@@ -114,15 +122,6 @@ function Home() {
                     setUpdateModal(true)
                   }} className='bg-neutral-900 hover:text-blue-500 hover:ring-blue-500 hover:font-semibold transition-all ease-linear duration-200 ring-1 ring-gray-400 px-4 py-2 rounded mr-5'>
                     <svg xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" className="icon icon-tabler icons-tabler-outline icon-tabler-edit-off"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1" /><path d="M10.507 10.498l-1.507 1.502v3h3l1.493 -1.498m2 -2.01l4.89 -4.907a2.1 2.1 0 0 0 -2.97 -2.97l-4.913 4.896" /><path d="M16 5l3 3" /><path d="M3 3l18 18" /></svg>
-                  </button>
-
-                  {/* Update image Button */}
-                  <button onClick={(e) => {
-                    e.preventDefault();
-                    setId(_id);
-                    setUpdateImgModal(true)
-                  }} className='bg-neutral-900 hover:text-yellow-500 hover:ring-blue-500 hover:font-semibold transition-all ease-linear duration-200 ring-1 ring-gray-400 px-4 py-2 rounded mr-5'>
-                    <svg xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" className="icon icon-tabler icons-tabler-outline icon-tabler-photo-scan"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M15 8h.01" /><path d="M6 13l2.644 -2.644a1.21 1.21 0 0 1 1.712 0l3.644 3.644" /><path d="M13 13l1.644 -1.644a1.21 1.21 0 0 1 1.712 0l1.644 1.644" /><path d="M4 8v-2a2 2 0 0 1 2 -2h2" /><path d="M4 16v2a2 2 0 0 0 2 2h2" /><path d="M16 4h2a2 2 0 0 1 2 2v2" /><path d="M16 20h2a2 2 0 0 0 2 -2v-2" /></svg>
                   </button>
 
                   {/* Delete Task Button */}
