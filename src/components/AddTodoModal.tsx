@@ -11,7 +11,7 @@ export default function AddTodosModal({ isVisible, onClose, reRender }: any) {
     const [description, setDescription] = useState("");
     const [deadline, setDeadline] = useState("");
     const [file, setFile] = useState("");
-    const [disabledBtn, setDisabledBtn] = useState(true)
+    const [disabledBtn, setDisabledBtn] = useState(true);
 
     const handelSubmit = async (e: any) => {
         e.preventDefault();
@@ -81,7 +81,7 @@ export default function AddTodosModal({ isVisible, onClose, reRender }: any) {
                             </div>
                             <div className="w-full">
                                 <label className="text-gray-300">Deadline :</label>
-                                <input type="datetime-local" value={deadline} onChange={(e) => setDeadline(e.target.value)} className="w-full px-5 my-2 rounded-sm py-2 text-black" name="" placeholder="Set Deadline" id="" />
+                                <input type="datetime-local" value={deadline} onChange={(e: any) => { setDeadline(e.target.value) }} className="w-full px-5 my-2 rounded-sm py-2 text-black" name="" placeholder="Set Deadline" id="" />
                             </div>
                             <button type="submit" disabled={disabledBtn} className={`bg-[#1a1a1a] w-full px-6 py-3 rounded text-white ring-1 ring-white uppercase hover:bg-black transition-all ease-linear duration-200 ${disabledBtn ? "cursor-not-allowed" : "cursor-pointer"}`}>
                                 Create Todo

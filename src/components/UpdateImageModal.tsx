@@ -40,7 +40,7 @@ function UpdateImageModal({ isUpdateImgVisible, onUpdateImgClose, id, reRender }
                             </div>
                             <div className="w-full">
                                 <label className="text-gray-300">Image :</label>
-                                <input type="file" title={"title"}
+                                <input type="file" accept='image/*' title={"title"}
                                     onChange={(e: any) => { setFile(e.target.files[0]) }}
                                     className="w-full px-5 py-2 mt-2 bg-white rounded-sm text-black"
                                     name="" placeholder="Todo-Title" id="" />
