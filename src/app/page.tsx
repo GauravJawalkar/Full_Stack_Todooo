@@ -5,6 +5,7 @@ import UpdateImageModal from "@/components/UpdateImageModal";
 import UpdateTodosModal from "@/components/UpdateTodoModal";
 import axios from "axios";
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useState } from "react"
 import toast from "react-hot-toast";
 
@@ -70,6 +71,8 @@ function Home() {
             completedTasks();
             setModal(false)
           }} className="bg-[#1a1a1a] px-4 py-2 rounded ring-1 text-white ring-gray-700 hover:bg-black hover:ring-gray-500 transition-all ease-linear duration-200">Completed Tasks</button>
+
+          <Link href={'/plan'} className="bg-[#1a1a1a] px-4 py-2 rounded ring-1 text-white ring-gray-700 hover:bg-black hover:ring-gray-500 transition-all ease-linear duration-200">Plan With AI</Link>
         </div>
         <AddTodosModal isVisible={modal} onClose={() => { setModal(false) }} reRender={() => response()} />
         <UpdateTodosModal isUpdateVisible={updateModal} onUpdateClose={() => { setUpdateModal(false) }} title={title} id={id} reRender={() => response()} />
