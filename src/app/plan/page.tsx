@@ -52,11 +52,11 @@ export default function PlanPage() {
                     <div>
                         <label>Are You Working?</label>
                         <label >No</label>
-                        <input checked={false} onChange={(e: any) => {
+                        <input checked={false} onChange={() => {
                             setWorking(false)
                         }} type="radio" />
                         <label> Yes</label>
-                        <input placeholder="" checked={false} onChange={(e: any) => {
+                        <input placeholder="" checked={false} onChange={() => {
                             setWorking(true)
                         }} type="radio" />
                     </div>
