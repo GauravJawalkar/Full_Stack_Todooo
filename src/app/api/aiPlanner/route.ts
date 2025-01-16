@@ -1,8 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
-const { GoogleGenerativeAI } = require("@google/generative-ai");
+import { GoogleGenerativeAI } from '@google/generative-ai'
 
 export async function POST(request: NextRequest) {
-    const genAI = new GoogleGenerativeAI(process.env.GEMINI_API);
+    const genAI = new GoogleGenerativeAI(`${process.env.GEMINI_API}`);
     const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
     const reqBody = await request.json();
