@@ -1,4 +1,5 @@
 "use client"
+import Loader from "@/components/Loader";
 import axios from "axios";
 import Link from "next/link";
 import React, { useState } from "react";
@@ -17,6 +18,7 @@ export default function PlanPage() {
     const [shortTermGoal, setShortTermGoal] = useState("");
     const [amPm, setAmPm] = useState("AM");
     const [workAmPm, setWorkAmPm] = useState("AM");
+    const [loading, setLoading] = useState(false)
 
     const userDetailsForPlan = {
         name,
@@ -34,12 +36,22 @@ export default function PlanPage() {
     const handelPlan = async (e: any) => {
         e.preventDefault();
         try {
+            setLoading(true)
             const plan = await axios.post('/api/aiPlanner', userDetailsForPlan)
             const planResponse = await plan.data.data;
             const readyPlan = JSON.parse(planResponse);
             setData(readyPlan);
+            setName("");
+            setAge("");
+            setWorking(false);
+            setWorkTime("");
+            setWakeUpTime("");
+            setLognTermGoal("");
+            setShortTermGoal("");
+            setLoading(false)
             return readyPlan
         } catch (error) {
+            setLoading(false)
             console.log("Error is : ", error)
         }
     }
@@ -125,7 +137,7 @@ export default function PlanPage() {
                         </div>
                         <input className="text-black px-4 py-2 w-full" required placeholder="short term goal" value={shortTermGoal} onChange={(e) => { setShortTermGoal(e.target.value) }} type="text" />
                     </div>
-                    <button type="submit" className="px-5 my-10 w-full py-2 bg-neutral-700 rounded uppercase font-semibold">Plan It</button>
+                    <button type="submit" className="px-5 my-10 w-full py-2 bg-neutral-700 rounded uppercase font-semibold">{loading ? <Loader title="Creating your plan" /> : "Plan It"}</button>
                 </form>
                 {data?.length !== 0 ? <div className="w-[2px] bg-white animate-pulse h-20"></div> : ""}
             </div>
