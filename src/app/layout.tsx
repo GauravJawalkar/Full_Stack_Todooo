@@ -26,7 +26,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} text-white antialiased bg-[#0d0c0c] `}
+        className={`${geistSans.variable} ${geistMono.variable} mx-auto container text-white antialiased bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))]  from-neutral-700 via-black to-neutral-900 bg-no-repeat bg-blend-normal `}
       >
         {children}
         <Toaster

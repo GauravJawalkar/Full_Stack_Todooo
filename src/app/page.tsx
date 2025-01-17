@@ -58,7 +58,7 @@ function Home() {
   }, [])
 
   return (
-    <section className="mx-auto container">
+    <section className="h-screen">
       <div className="text-center text-4xl my-10 font-semibold ">TASKLii-📝</div>
       <div>
         <div className="flex items-center justify-center gap-5 my-5 flex-wrap px-[6px]">
@@ -83,7 +83,7 @@ function Home() {
         {
           data.length > 0 ? data.map(({ _id, title, deadline, image }) => {
             return (
-              <div className='w-full bg-[#1a1a1a] border border-gray-700 p-4 rounded-xl' key={_id}>
+              <div className='w-full border border-gray-700 p-4 rounded-xl' key={_id}>
                 {/* color div*/}
                 <div className='h-1 bg-red-500 mb-4'>
                 </div>
