@@ -49,7 +49,7 @@ export async function POST(request: NextRequest) {
 
     // Creating a promt by using the above goten values . Would update later
 
-    const newPrompt = `Hello my name is ${name}.I am ${age} years old. ${notWorking ? "I am currently not working" : `I am working from ${workTime} ${workAmPm} to ${Number(workTime) + 8} `}.I wakeup at ${wakeUpTime} ${amPm}.My longTerm goal is ${lognTermGoal} and my short term goal is ${shortTermGoal}. Create me a optimal time-wise plan  using this information keeping in mind the longterm and short term goals, also add some gym-time to it.Take in consideration the time required to travel for gym and other things`
+    const newPrompt = `Hello my name is ${name}.I am ${age} years old. ${notWorking ? "I am currently not working" : `I am working from ${workTime} ${workAmPm} to ${Number(workTime) + 8} `}.I wakeup at ${wakeUpTime} ${amPm}.My longTerm goal is ${lognTermGoal} and my short term goal is ${shortTermGoal}. Create me a optimal time-wise plan  using this information keeping in mind the longterm and short term goals, also add some gym-time to it.Take in consideration the time required to travel for gym and other things.Always give the task timinings in 12 hour format`
 
     console.log(newPrompt);
 

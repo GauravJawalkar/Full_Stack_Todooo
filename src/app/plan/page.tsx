@@ -3,7 +3,9 @@ import Loader from "@/components/Loader";
 import axios from "axios";
 import Link from "next/link";
 import React, { useState } from "react";
+import toast from "react-hot-toast";
 import { CiHome } from "react-icons/ci";
+import { FcNext, FcPrevious } from "react-icons/fc";
 import { IoBulbOutline } from "react-icons/io5";
 
 export default function PlanPage() {
@@ -19,6 +21,7 @@ export default function PlanPage() {
     const [amPm, setAmPm] = useState("AM");
     const [workAmPm, setWorkAmPm] = useState("AM");
     const [loading, setLoading] = useState(false)
+    const [nextStep, setNextStep] = useState(1);
 
     const userDetailsForPlan = {
         name,
@@ -41,6 +44,7 @@ export default function PlanPage() {
             const planResponse = await plan.data.data;
             const readyPlan = JSON.parse(planResponse);
             setData(readyPlan);
+            toast.success("Got You A Plan!")
             setName("");
             setAge("");
             setWorking(false);
@@ -56,27 +60,33 @@ export default function PlanPage() {
         }
     }
 
+
     return (
-        <section className="bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))]  from-neutral-700 via-black to-neutral-900">
-            <div className="flex backdrop-blur-xl inset-0 bg-opacity-5  items-center justify-center flex-col gap-5 ">
-                <div className="flex items-center justify-center gap-2 mt-5 px-3 py-1 rounded" >
+        <section className=" ">
+            <div className="flex backdrop-blur-xl inset-0 bg-opacity-5  items-center justify-center flex-col gap-5 h-screen">
+                <div className="flex backdrop-blur-sm items-center justify-center gap-2 mt-5 px-3 py-1 rounded border border-gray-500" >
                     <CiHome /> <Link href={"/"} >Home</Link>  {">"} <IoBulbOutline /> <Link href={"/plan"} >Plan</Link>
                 </div>
                 <form onSubmit={handelPlan} className="space-y-4 w-[500px] border border-gray-700 px-10 py-8 rounded-md">
-                    <h1 className="text-4xl font-semibold pb-10 animate-pulse text-center">Lets Plan For You!!</h1>
-                    <div>
-                        <div>
-                            <label>Whats Your Name?</label>
+                    <h1 className="text-4xl font-semibold pb-5 animate-pulse text-center">Lets Plan For You!!</h1>
+                    {nextStep === 1 && <div>
+                        <div className="mb-2">
+                            <label>Whats Your Name ?</label>
                         </div>
-                        <input className="text-black px-4 py-2 w-full" required placeholder="Name" value={name} onChange={(e: any) => { setName(e.target.value) }} type="text" />
-                    </div>
-                    <div>
+                        <input className="text-black px-4 py-2 w-full rounded" required placeholder="Name" value={name} onChange={(e: any) => { setName(e.target.value) }} type="text" />
+                    </div>}
+
+
+                    {nextStep === 2 && <div>
                         <div>
                             <label>Whats Your Age?</label>
                         </div>
                         <input className="text-black px-4 py-2 w-full" required placeholder="Age" value={age} onChange={(e) => { setAge(e.target.value) }} type="text" />
-                    </div>
-                    <div>
+                    </div>}
+
+
+
+                    {/* {nextStep === 3 && <div>
                         <div>
                             <label>Are You Working?</label>
                         </div>
@@ -95,10 +105,10 @@ export default function PlanPage() {
                                 }} type="radio" />
                             </span>
                         </div>
-                    </div>
+                    </div>}
 
-                    {/* Optionla rendeirg SHIT */}
-                    {working ? <div>
+                    
+                    {working === true ? <div>
                         <div>
                             <label>Work Time</label>
                         </div>
@@ -110,9 +120,9 @@ export default function PlanPage() {
                             </select>
                         </div>
                     </div> :
-                        ""}
+                        ""} */}
 
-                    <div>
+                    {nextStep === 3 && <div>
                         <div>
                             <label>Wake Up Time</label>
                         </div>
@@ -124,25 +134,30 @@ export default function PlanPage() {
                             <option value={"AM"}>AM</option>
                             <option value={"PM"}>PM</option>
                         </select>
-                    </div>
-                    <div>
+                    </div>}
+                    {nextStep === 4 && <div>
                         <div>
                             <label>Your Long Term Goal</label>
                         </div>
                         <input className="text-black px-4 py-2 w-full" required placeholder="Long term goal" value={lognTermGoal} onChange={(e) => { setLognTermGoal(e.target.value) }} type="text" />
-                    </div>
-                    <div>
+                    </div>}
+                    {nextStep === 5 && <div>
                         <div>
                             <label>Your Short Term Goal</label>
                         </div>
                         <input className="text-black px-4 py-2 w-full" required placeholder="short term goal" value={shortTermGoal} onChange={(e) => { setShortTermGoal(e.target.value) }} type="text" />
+                    </div>}
+                    <div className="flex items-center justify-start gap-5">
+                        <button onClick={() => setNextStep(nextStep - 1)} className={`px-4 py-1 rounded bg-neutral-800 group ${nextStep === 1 ? "hidden" : "block"}`}><span className="flex items-center gap-2"><FcPrevious className="group-hover:-translate-x-1 transition-transform ease-in-out duration-200" />Prev </span></button>
+
+                        <button onClick={() => setNextStep(nextStep + 1)} className={`px-4 py-1 rounded bg-neutral-800 group ${nextStep === 5 ? "hidden" : "block"}`}><span className="flex items-center gap-2">Next <FcNext className="group-hover:translate-x-1 transition-transform ease-in-out duration-200" /></span></button>
                     </div>
-                    <button type="submit" className="px-5 my-10 w-full py-2 bg-neutral-700 rounded uppercase font-semibold">{loading ? <Loader title="Creating your plan" /> : "Plan It"}</button>
+                    {nextStep === 5 && <button type="submit" className="px-5 my-10 w-full py-2 bg-neutral-700 rounded uppercase font-semibold">{loading ? <Loader title="Creating your plan" /> : "Plan It"}</button>}
                 </form>
                 {data?.length !== 0 ? <div className="w-[2px] bg-white animate-pulse h-20"></div> : ""}
             </div>
             {
-                data.length === 0 ? "No data found" : data?.map(({ time, task, whatWillItHelpToAchieve }) => {
+                data.length === 0 ? "" : data?.map(({ time, task, whatWillItHelpToAchieve }) => {
                     return <section className="flex items-center justify-center " key={Math.random()}>
                         <div className="w-[500px] flex items-center justify-center flex-col">
                             <div className=" border p-4 w-full rounded">
