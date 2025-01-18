@@ -35,10 +35,10 @@ export default function PlanPage() {
         workAmPm
     }
 
-    setWorkAmPm("AM");
 
     const handelPlan = async (e: any) => {
         e.preventDefault();
+        setWorkAmPm("AM");
         try {
             setLoading(true)
             const plan = await axios.post('/api/aiPlanner', userDetailsForPlan)
