@@ -35,6 +35,7 @@ export default function PlanPage() {
         workAmPm
     }
 
+    setWorkAmPm("AM");
 
     const handelPlan = async (e: any) => {
         e.preventDefault();
