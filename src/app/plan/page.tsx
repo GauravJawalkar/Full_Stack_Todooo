@@ -164,9 +164,9 @@ export default function PlanPage() {
             </div>
             {
                 data.length === 0 ? "" : data?.map(({ time, task, whatWillItHelpToAchieve }) => {
-                    return <section className="flex items-center justify-center " key={Math.random()}>
+                    return <section className="flex items-center justify-center" key={Math.random()}>
                         <div className="w-[500px] max-sm:w-auto max-sm:px-5 flex items-center justify-center flex-col">
-                            <div className=" border p-4 w-full rounded">
+                            <div className="backdrop-blur-md border p-4 w-full rounded">
                                 <h1 className="font-semibold text-lg uppercase py-2">Time 🕖 : {time} </h1>
                                 <h1 className="font-semibold antialiased py-2 text-lg ">Task : <span>{task}</span></h1>
                                 <h1 className="text-gray-400">{whatWillItHelpToAchieve}</h1>
